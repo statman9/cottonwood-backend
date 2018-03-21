@@ -1,0 +1,25 @@
+{
+  "name": "coding-assignment-friday",
+  "version": "1.0.0",
+  "description": "For Cottonwood Residential interview",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/statman9/cottonwood.git"
+  },
+  "author": "Josh Sorensen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/statman9/cottonwood/issues"
+  },
+  "homepage": "https://github.com/statman9/cottonwood#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mysql": "^2.15.0",
+    "mysql-json": "^0.1.3"
+  }
+}
