@@ -10,8 +10,6 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'www')));
 
 app.use('/posts', 
-    bodyParser.urlencoded({ extended: true }),
-    bodyParser.json(), 
     postController);
 
 app.get('/', (req, res) => {
