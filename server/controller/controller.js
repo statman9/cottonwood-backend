@@ -6,7 +6,6 @@ const router = new Router();
 module.exports = router;
 
 router.get('/', (req, res) => {
-    console.log(req);
     db.query("SELECT * from posts",
     (err, result) => {
         if (err) { throw err; }
@@ -15,7 +14,6 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    console.log(req);
     db.query("SELECT * from posts WHERE id='" + req.params.id + "'", 
     (err, result) => {
         if (err) {throw err;}
@@ -24,9 +22,8 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    db.insert('posts', {
-
-    }, (err, result) => {
+    db.insert('posts', req.body
+    , (err, result) => {
         if (err) {throw err;}
         res.json(result);
     });
@@ -42,9 +39,7 @@ router.delete('/:id', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    db.update('posts', {
-
-    },
+    db.update('posts', req.body,
     {
         id: {operator: '=', value: req.params.id}
     }, (err, result) => {

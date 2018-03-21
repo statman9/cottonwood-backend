@@ -15,8 +15,7 @@ app.use(bodyParser.json());
 app.use('/posts', postController);
 
 app.get('/', (req, res) => {
-    console.log(req);
-    res.render('../www/index.html');
+    res.render('./index.html');
 });
 
 const listener = app.listen(8081, function(err) {
