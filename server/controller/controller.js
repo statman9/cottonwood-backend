@@ -1,7 +1,8 @@
 'use strict';
 const db        = require('../database')('ember_example');
-const router    = require('express').Router;
+const Router    = require('express').Router;
 
+const router = new Router();
 module.exports = router;
 
 router.get('/', (req, res) => {
