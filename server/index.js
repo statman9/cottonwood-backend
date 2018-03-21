@@ -6,7 +6,7 @@ const path              = require('path');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '/www')));
+app.use(express.static(path.resolve(__dirname, '/www')));
 app.use(bodyParser.urlencoded({
     extended: true
   }));
