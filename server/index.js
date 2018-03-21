@@ -9,10 +9,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'www')));
 
-app.use('/posts', 
-    postController);
+app.use('/posts', postController);
 
 app.get('/', (req, res) => {
+    console.log(req);
     res.render('../www/index.html');
 })
 
