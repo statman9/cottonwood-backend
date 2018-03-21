@@ -2,10 +2,12 @@
 const express           = require('express');
 const bodyParser        = require('body-parser');
 const postController    = require('./controller/controller');
+const path              = require('path');
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'www')));
 
 app.use('/posts', 
     bodyParser.urlencoded({ extended: true }),
