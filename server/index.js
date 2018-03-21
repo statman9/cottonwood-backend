@@ -10,6 +10,10 @@ app.use('/posts',
     bodyParser.json(), 
     postController);
 
+app.get('/', (req, res) => {
+    res.render('../www/index.html');
+})
+
 const listener = app.listen(8080, function(err) {
     if (err) throw err;
    
