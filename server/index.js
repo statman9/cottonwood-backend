@@ -6,15 +6,18 @@ const path              = require('path');
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, '/www')));
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'www')));
 
 app.use('/posts', postController);
 
 app.get('/', (req, res) => {
     console.log(req);
     res.render('../www/index.html');
-})
+});
 
 const listener = app.listen(8081, function(err) {
     if (err) throw err;

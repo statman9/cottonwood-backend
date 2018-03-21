@@ -6,6 +6,7 @@ const router = new Router();
 module.exports = router;
 
 router.get('/', (req, res) => {
+    console.log(req);
     db.query("SELECT * from posts",
     (err, result) => {
         if (err) { throw err; }
@@ -14,7 +15,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    db.query("SELECT * from posts WHERE id=" + req.params.id, 
+    console.log(req);
+    db.query("SELECT * from posts WHERE id='" + req.params.id + "'", 
     (err, result) => {
         if (err) {throw err;}
         res.json(result);
