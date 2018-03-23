@@ -12,28 +12,28 @@ app.use(bodyParser.urlencoded({
   }));
 app.use(bodyParser.json());
 
-app.use('/posts', postController);
-
-app.get('/', (req, res) => {
-    res.render('./index.html');
-});
-
 // Add headers
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://159.89.148.4:4200');
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
     // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Accept');
 
     // Pass to next layer of middleware
     next();
 });
 
+
+app.use('/posts', postController);
+
+app.get('/', (req, res) => {
+    res.render('./index.html');
+});
 const listener = app.listen(8081, function(err) {
     if (err) throw err;
    
