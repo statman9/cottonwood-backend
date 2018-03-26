@@ -23,7 +23,9 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    db.query("INSERT INTO posts SET id='UUID()', title='"+ req.body.title +"', content='"+req.body.content+"', created_at=" + mysql.raw('CURRENT_TIMESTAMP()'),
+    var currentTime = mysql.raw('CURRENT_TIMESTAMP()');
+    var newId = mysql.raw('UUID()')
+    db.query("INSERT INTO posts SET id=?, title=?, content=?, created_at=?", [newId, req.body.title, req.body.content, currentTime],
     (err, result) => {
         if (err) {throw err;}
         res.json(result);
@@ -31,7 +33,8 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    db.query("UPDATE posts SET deleted_at=" + mysql.raw('CURRENT_TIMESTAMP()') + "WHERE id='" + req.params.id + "'",
+    var currentTime = mysql.raw('CURRENT_TIMESTAMP()');
+    db.query("UPDATE posts SET deleted_at=? WHERE id=?", [currentTime, req.params.id],
     (err, result) => {
         if (err) {throw err;}
         db.query("DELETE FROM posts WHERE id='" + req.params.id + "'", 
@@ -44,7 +47,8 @@ router.delete('/:id', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    db.query("UPDATE posts SET title=?, content=?, updated_at=" + mysql.raw('CURRENT_TIMESTAMP()') + " WHERE id= ?", [req.body.title, req.body,content, req.params.id],
+    var currentTime = mysql.raw('CURRENT_TIMESTAMP()');
+    db.query("UPDATE posts SET title=?, content=?, updated_at=? WHERE id= ?", [req.body.title, req.body,content, currentTime, req.params.id],
     (err, result) => {
         if (err) {throw err;}
         res.json(result);
