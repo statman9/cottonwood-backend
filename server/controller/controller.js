@@ -22,8 +22,8 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    db.query("INSERT INTO posts SET ?", req.body
-    , (err, result) => {
+    db.query("INSERT INTO posts SET id='UUID()', title='"+ req.body.title +"', content='"+req.body.content+"', created_at='now()'",
+    (err, result) => {
         if (err) {throw err;}
         res.json(result);
     });
