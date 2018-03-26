@@ -1,5 +1,5 @@
 'use strict';
-const mysql     = require('mysql-json');
+const mysql     = require('mysql');
 
 module.exports = function(dbName) {
     return new mysql({

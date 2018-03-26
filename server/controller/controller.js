@@ -22,8 +22,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    console.log(req.body);
-    db.insert('posts', req.body
+    db.query("INSERT INTO posts SET ?", req.body
     , (err, result) => {
         if (err) {throw err;}
         res.json(result);
@@ -31,19 +30,16 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    db.delete('posts', {
-        id: {operator: '=', value: req.params.id}
-    }, (err, result) => {
+    db.delete("DELETE FROM posts WHERE id='" + req.params.id + "'", 
+    (err, result) => {
         if (err) {throw err;}
         res.json(result);
     });
 });
 
 router.put('/:id', (req, res) => {
-    db.update('posts', req.body,
-    {
-        id: {operator: '=', value: req.params.id}
-    }, (err, result) => {
+    db.query("UPDATE posts SET title=?, content=?, updated_at='now()' WHERE id= ?", [req.body.title, req.body,content, req.params.id],
+    (err, result) => {
         if (err) {throw err;}
         res.json(result);
     });
