@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     var currentTime = mysql.raw('CURRENT_TIMESTAMP()');
-    var newId = mysql.raw('UUID()')
+    var newId = mysql.raw('UUID()');
     db.query("INSERT INTO posts SET id=?, title=?, content=?, created_at=?", [newId, req.body.title, req.body.content, currentTime],
     (err, result) => {
         if (err) {throw err;}
@@ -48,7 +48,7 @@ router.delete('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
     var currentTime = mysql.raw('CURRENT_TIMESTAMP()');
-    db.query("UPDATE posts SET title=?, content=?, updated_at=? WHERE id= ?", [req.body.title, req.body,content, currentTime, req.params.id],
+    db.query("UPDATE posts SET title=?, content=?, updated_at=? WHERE id= ?", [req.body.title, req.body,content, currentTime, req.body.id],
     (err, result) => {
         if (err) {throw err;}
         res.json(result);
